@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Please note that whilst this template provides a 
-% preview of the typeset manuscript for submission, it 
+% Please note that whilst this template provides a
+% preview of the typeset manuscript for submission, it
 % will not necessarily be the final publication layout.
 %
 % letterpaper/a4paper: US/UK paper size toggle
@@ -68,15 +68,13 @@ Galaxy; Training; Teaching; Bioinformatics
 % The background section should be written in a way that is accessible to researchers without specialist knowledge in that area and must clearly state---and, if helpful, illustrate---the background to the research and its aims. The section should end with a brief statement of what is being reported in the article.
 
 % todo: sentence about how importnt hands-on training is?
-With the volume of bioinformatics data becoming available, the availability of training for bioinformaticians is not keeping up (\cite{Attwood2017}). The Galaxy Project has developed a wide array of hands-on training materials covering the bioinformatics domains and beyond (\cite{gtn}) in an attempt to combat this issue, but in order to run these tutorials at scale, one needs access to significant resources. The quite popular ``Reference-based RNA-Seq data analysis'' tutorial uses the STAR aligner (\cite{Dobin2012}), and while an ultra-fast aligner is ideal during training, it also consumes 120 GB of RAM at minimum. Running a single copy of STAR might be fine, but having 30 students running it simultaneously can present unexpected delays. 
+With the volume of bioinformatics data becoming available, the availability of training for bioinformaticians is not keeping up (\cite{Attwood2017}). The Galaxy Project has developed a wide array of hands-on training materials covering the bioinformatics domains and beyond (\cite{gtn}) in an attempt to combat this issue, but in order to run these tutorials at scale, one needs access to significant resources. The quite popular ``Reference-based RNA-Seq data analysis'' tutorial uses the STAR aligner (\cite{Dobin2012}), and while an ultra-fast aligner is ideal during training, it also consumes 120 GB of RAM at minimum. Running a single copy of STAR might be fine, but having 30 students running it simultaneously can present unexpected delays.
 
 Many tools across Galaxy have similar hidden requirements, if teachers choose to manage their own infrastructure they need to obtain this knowledge via testing the tutorial with multiple people simultaneously, and then configure their infrastructure to support the minimum memory and CPU requirements.
 
 Informally, many of our training peers complained about the amount of time that went into preparing courses for students, the infrastructure problem was a cause of much concern. On public Galaxy servers, their students' jobs could unexpectedly sit in queues for long periods. On private or cloud infrastructure, the instructors were solely responsible for the functionality and any server issues could lead to significant stress when they should have been solely focused on teaching.
 
 \subsection{Results}
-We implemented a web service and some job scheduling rules which functions together to present a private queue for users in specific groups. Trainers register their course and teaching materials with a Google Form. Administrators review requests, and upon approval schedule cloud nodes to be launched, tagged for this training, and register the training with the Group Joining Service (GJS). Administrators receive a URL such as \url{https://usegalaxy.eu/join-training/test}, which they share with the trainer, and the trainer provides in turn to their students. Administrators additionally configure their Galaxy's job scheduling to be aware of this training group, and to place special requirements on the jobs submitted by users in this group, to direct them to private resources.
-
 \begin{figure}[bt!]
 \centering
 \includegraphics[width=\linewidth]{images/dashboard.png}
@@ -84,9 +82,17 @@ We implemented a web service and some job scheduling rules which functions toget
 	\caption{The top of the training dashboard page shows the status of the jobs in the past hours. A heatmap of the tools which were run indiciates if everything is running smoothly or if there is anything the teacher should look into. As students follow along and run different tools these show up, and complete, with approximately identical numbers of executions as students follow instructions. The bottom image shows the rest of the training dashboard, which lists jobs that were run chronologically, colour coded first by student, and second for the job status. Pseudorandom identifiers were originally used to protect user privacy as the dashboards were public, but even given the option to show more recognisable user identifiers was deemed to be distracting from the main purpose of a quick overview for teachers.}\label{figure:dashboard}
 \end{figure}
 
-The course dashboard, visualising the progress of students (\ref{figure:dashboard}), has significantly eased the lives trainers, based on anecdotal evidence.
+We implemented a web service and some job scheduling rules which functions together to present a private queue for users in specific groups. Trainers register their course and teaching materials with a Google Form. Administrators review requests, and upon approval schedule cloud nodes to be launched, tagged for this training, and register the training with the Group Joining Service (GJS). Administrators receive a URL such as \url{https://usegalaxy.eu/join-training/test}, which they share with the trainer, and the trainer provides in turn to their students. Administrators additionally configure their Galaxy's job scheduling to be aware of this training group, and to place special requirements on the jobs submitted by users in this group, to direct them to private resources (Figure \ref{figure:queue}).
 
-Since the introduction of TIaaS in July 2018, it has seen nearly constant use with more than 55 trainings occuring on the platform, all across the world (\ref{figure:map}). Everything from one day workshops for bioinformaticians to multi-month courses for highschool students have been hosted by TIaaS and UseGalaxy.eu, covering topics such as HTS, RNA-Seq, ChIP-Seq, Imaging Analysis, Proteomics, and Machine Learning.
+\begin{figure}[bt!]
+\centering
+\includegraphics[width=\linewidth]{images/rules.png}
+	\caption{All jobs are processed by the same Galaxy server, but jobs from users in the training groups receive special handling. These jobs are allowed to run on the protected training resources (purple). If the training resource is full, these jobs can spill over to the main queue if necessary.}\label{figure:queue}
+\end{figure}
+
+The course dashboard, visualising the progress of students (Figure \ref{figure:dashboard}), has significantly eased the lives trainers, based on anecdotal evidence.
+
+Since the introduction of TIaaS in July 2018, it has seen nearly constant use with more than 55 trainings occuring on the platform, all across the world (Figure \ref{figure:map}). Everything from one day workshops for bioinformaticians to multi-month courses for highschool students have been hosted by TIaaS and UseGalaxy.eu, covering topics such as HTS, RNA-Seq, ChIP-Seq, Imaging Analysis, Proteomics, and Machine Learning.
 
 \begin{figure}[bt!]
 \centering
@@ -94,7 +100,7 @@ Since the introduction of TIaaS in July 2018, it has seen nearly constant use wi
 	\caption{Since its introduction, TIaaS has seen worldwide usage despite--or perhaps in some cases due to--the server being hosted in Germany.}\label{figure:map}
 \end{figure}
 
-Class sizes ranged considerably, from the median of 15 students to a maximum of 80 at a transcriptomics workshop. 
+Class sizes ranged considerably, from the median of 15 students to a maximum of 80 at a transcriptomics workshop.
 
 
 \section{Methods}
