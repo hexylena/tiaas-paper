@@ -68,16 +68,14 @@ Galaxy; Training; Teaching; Bioinformatics
 % The background section should be written in a way that is accessible to researchers without specialist knowledge in that area and must clearly state---and, if helpful, illustrate---the background to the research and its aims. The section should end with a brief statement of what is being reported in the article.
 
 % todo: sentence about how importnt hands-on training is?
-\subsection{Background}
-With the volume of bioinformatics data becoming available, the availability of training for bioinformaticians is not keeping up (\cite{Attwood2017}).
+With the volume of bioinformatics data becoming available, the availability of training for bioinformaticians is not keeping up (\cite{Attwood2017}). The Galaxy Project has developed a wide array of hands-on training materials covering the bioinformatics domains and beyond (\cite{gtn}) in an attempt to combat this issue, but in order to run these tutorials at scale, one needs access to significant resources. The quite popular ``Reference-based RNA-Seq data analysis'' tutorial uses the STAR aligner (\cite{Dobin2012}), and while an ultra-fast aligner is ideal during training, it also consumes 120 GB of RAM at minimum. Running a single copy of STAR might be fine, but having 30 students running it simultaneously can present unexpected delays. 
 
-The Galaxy Project has developed a wide array of hands-on training materials covering the bioinformatics domains and beyond (\cite{gtn}), but in order to run these trainings one needs access to sometimes significant resources. The popular ``Reference-based RNA-Seq data analysis'' tutorial uses the STAR aligner (\cite{Dobin2012}), and while an ultra-fast aligner is ideal during training, it also consumes 120 GB of RAM at minimum. Many tools across the training materials have sometimes hidden requirements, requiring that trainers test the workflows and configure their instance to support the minimum memory and CPU requirements.
+Many tools across Galaxy have similar hidden requirements, if teachers choose to manage their own infrastructure they need to obtain this knowledge via testing the tutorial with multiple people simultaneously, and then configure their infrastructure to support the minimum memory and CPU requirements.
 
-Informally, many of our training peers complained about the amount of time that went into preparing courses for students, the infrastructure problem was a cause of stress. On public Galaxy servers, their students' jobs could sit in queues for days. On private or cloud infrastructure, the instructors were solely responsible for the functionality and any bugs could lead to significant stress and occasionally cancelling courses if there was not alternative infrastructure already avaialable.
-
+Informally, many of our training peers complained about the amount of time that went into preparing courses for students, the infrastructure problem was a cause of much concern. On public Galaxy servers, their students' jobs could unexpectedly sit in queues for long periods. On private or cloud infrastructure, the instructors were solely responsible for the functionality and any server issues could lead to significant stress when they should have been solely focused on teaching.
 
 \subsection{Results}
-We implemented a web service and which function together to present a coherent experience to the user, trainer, and Galaxy administrator. Trainers register their course and teaching materials with a Google Form. Administrators review requests, and upon approval schedule cloud nodes to be launched, tagged for this training, and register the training with the Group Joining Service (GJS). Administrators receive a URL such as \texttt{https://usegalaxy.eu/join-training/test}, which they share with the trainer, and the trainer provides in turn to their students. Administrators additionally configure their Galaxy's job scheduling to be aware of this training group, and to place special requirements on the jobs submitted by users in this group, to direct them to private resources.
+We implemented a web service and some job scheduling rules which functions together to present a private queue for users in specific groups. Trainers register their course and teaching materials with a Google Form. Administrators review requests, and upon approval schedule cloud nodes to be launched, tagged for this training, and register the training with the Group Joining Service (GJS). Administrators receive a URL such as \url{https://usegalaxy.eu/join-training/test}, which they share with the trainer, and the trainer provides in turn to their students. Administrators additionally configure their Galaxy's job scheduling to be aware of this training group, and to place special requirements on the jobs submitted by users in this group, to direct them to private resources.
 
 \begin{figure}[bt!]
 \centering
@@ -96,18 +94,17 @@ Since the introduction of TIaaS in July 2018, it has seen nearly constant use wi
 	\caption{Since its introduction, TIaaS has seen worldwide usage despite--or perhaps in some cases due to--the server being hosted in Germany.}\label{figure:map}
 \end{figure}
 
-Class sizes ranged considerably, from the median of 15 students to a maximum of 80 at a transcriptomics workshop.
+Class sizes ranged considerably, from the median of 15 students to a maximum of 80 at a transcriptomics workshop. 
 
 
 \section{Methods}
 
 \subsection{Implementation}
-The group joining service was written in python using the Flask framework. It is a relatively small service, simply talking to the Galaxy DB and adding the user to a group.
-The student progress dashboard was added to the same service, accessed at a url like \texttt{/join-training/<training-id>/status} it queries the Galaxy database for the users in that group, and then fetches all jobs created by those users in the past N hours, before displaying these as a list and several summary tables to the viewer.
+The group joining service was written in python using the Flask framework. It is a relatively small service, simply talking to the Galaxy DB and adding the user to a group when they visit a specific URL.
+The student progress dashboard is part of the same service, accessed at a url like \url{https://usegalaxy.eu/join-training/test/status}, where \texttt{test} is the ``training identifier''. This view queries the Galaxy database for the users in the gr roup (e.g. \texttt{test}), and then fetches all jobs created by those users in the past N hours, before displaying these as a list and several summary tables to the viewer. The viewer can change the time range to view, or have the page auto-refresh if they want a more live view into their class.
 
 \subsection{Reusability}
 An Ansible role was produced for deploying the GJS, in order to simplify deployment at other sites. The routing rules unfortunately cannot easily be integrated into Galaxy itself, and must be re-implemented at other sites which wish to produce a similar setup. Galaxy provides the ability to talk to multiple cluster systems but unfortunately there is currently no generic abstraction for labelled nodes our the routing logic of HTCondor which we leverage for this private queueing.
-
 
 \section{Availability of source code and requirements}
 
@@ -121,8 +118,7 @@ An Ansible role was produced for deploying the GJS, in order to simplify deploym
 \end{itemize}
 
 \section{Availability of supporting data and materials}
-
-
+All code is open source and available on GitHub.
 
 \section{Declarations}
 
@@ -130,13 +126,12 @@ An Ansible role was produced for deploying the GJS, in order to simplify deploym
 %if abbreviations are used in the text they should be defined in the text at first use, and a list of abbreviations should be provided in alphabetical order.
 
 \begin{itemize}
-\item TIaaS: Training Infrastructure as a Service
 \item GJS: TIaaS Group Join Service
+\item TIaaS: Training Infrastructure as a Service
 \end{itemize}
 
 
 \subsection{Competing Interests}
-
 The authors declare that they have no competing interests.
 
 
