@@ -138,11 +138,27 @@ For instructors a form is provided (\texttt{/tiaas/new}) which permits them to r
 
 When visiting the dashboard (Figure \ref{figure:dashboard}), the training ID is extracted from the URL (e.g. ``test'' from \url{https://usegalaxy.eu/join-training/test/status}), and all non-terminal jobs, in the past 1-6 hours, from those users are presented in a pseudonymised manner.
 
-\subsubsection{Scheduling}
-When a job is submitted by a user in a training group, the Galaxy instance's job scheduling system system reads the user's groups and roles, and if any of these include something prefixed with \texttt{training-}, then this is converted to a job scheduler specific requirement string (Figure \ref{code:scheduler}, \ref{code:tpv}). Ideally these are scheduled to prefer training nodes, and spill over to the main queue if training nodes are full, but this feature is dependant on specific scheduler capabilities.
-
 \subsubsection{Overview Pages}
 Information over the status of the TIaaS system is provided via the interface. The calendar page made with Vue.js (e.g. \url{https://usegalaxy.eu/tiaas/calendar/}) shows upcoming training events, as well as their details if one is logged in as a TIaaS administrator. This is complemented by the stats view (e.g. \url{https://usegalaxy.eu/tiaas/stats/}) which shows overall system statistics giving funding agencies and staff a live view of the impact their service is having on the community and world.
+
+\subsubsection{Scheduling}
+When a job is submitted by a user in a training group, the Galaxy instance's job scheduling system system reads the user's groups and roles, and if any of these include something prefixed with \texttt{training-}, then this is converted to a job scheduler specific requirement string (Figure \ref{code:scheduler}, \ref{code:tpv}). Ideally these are scheduled to prefer training nodes, and spill over to the main queue if training nodes are full, but this feature is dependant on specific scheduler capabilities. 
+
+In HTCondor this can be accomplished by preventing regular jobs from running on training nodes, and then allowing training jobs to run on training nodes, and preferring those nodes via configuration like in Figure \ref{code:condorprefer}.
+
+Slurm, in contrast, requires either using TPV's notion of machine tags to separate jobs onto those specific, or selection a partition with \texttt{--partition=training-nld}
+
+\begin{figure}[!ht]
+\centering
+\begin{lstlisting}[frame=single]  % Start your code-block
+# HTCondor
+Requirements=(GalaxyGroup == training-nld) || (GalaxyGroup == training-aus)
++Group="training-aus, training-nld"
+\end{lstlisting}
+\caption{HTCondor configuration to prefer specific training nodes.\label{code:condorprefer}}
+\end{figure}
+
+
 
 \begin{figure}[!ht]
 \centering
@@ -159,7 +175,7 @@ def queue_job(job, user):
 \caption{Python pseudocode representing how TIaaS jobs are typically processed and allocated to a private queue.\label{code:scheduler}}
 \end{figure}
 
-Or, rewritten for the modern Total Perspective Vortex scheduler that is in place at the big three UseGalaxy servers:
+Or, rewritten for the modern Total Perspective Vortex (TPV) scheduler that is in place at the big three UseGalaxy servers:
 
 \begin{figure}[!ht]
 \centering
