@@ -156,7 +156,8 @@ Slurm, in contrast, requires either using TPV's notion of machine tags to separa
 \centering
 \begin{lstlisting}[frame=single]  % Start your code-block
 # HTCondor
-Requirements=(GalaxyGroup == training-nld) || (GalaxyGroup == training-aus)
+Requirements=(GalaxyGroup == training-nld) || \
+    (GalaxyGroup == training-aus)
 +Group="training-aus, training-nld"
 \end{lstlisting}
 \caption{HTCondor configuration to prefer specific training nodes.\label{code:condorprefer}}
