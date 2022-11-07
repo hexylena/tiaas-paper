@@ -1,6 +1,6 @@
 library(tidyverse)
-#numbers_eu <- read_csv("https://usegalaxy.eu/tiaas/numbers.csv")
-numbers_eu <- read_csv("numbers.eu.csv")
+numbers_eu <- read_csv("https://usegalaxy.eu/tiaas/numbers.csv")
+#numbers_eu <- read_csv("numbers.eu.csv")
 numbers_eu$site = 'eu'
 numbers_fr <- read_csv("https://usegalaxy.fr/tiaas/numbers.csv")
 numbers_fr$site = 'fr'
@@ -19,7 +19,7 @@ system(paste("optipng ", getwd(), "event-starts.png"))
 
 ggplot(numbers, aes(end-start, fill=site)) + 
   geom_histogram(position="stack") +
-  xlab("Event Length") + ylab("Number of Events") + 
+  xlab("Event Length (Days)") + ylab("Number of Events") + 
   ggtitle("Event Lengths") +
   scale_fill_manual(values=c("#D162A4", "#B55690", "#A30262"))
 ggsave("event-lengths.png", width=5, height=2)
