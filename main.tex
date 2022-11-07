@@ -30,7 +30,8 @@
 \author[9]{Nate~Coraor}
 \author[6,6a]{Anthony~Bretaudeau}
 \author[10]{Gianmauro~Cuccuru}
-\author[8,10]{Beatriz Serrano-Solano}
+\author[7]{Wendi~Bacon}
+\author[8,10]{Beatriz~Serrano-Solano}
 \author[9]{Jennifer~Hillman-Jackson}
 \author[1]{Saskia Hiltemann}
 \author[10\authfn{2}]{Bj\"orn~Gr\"uning}
@@ -44,6 +45,7 @@
 \affil[4]{Melbourne Bioinformatics, The University of Melbourne, Australia.}
 \affil[6]{IGEPP, INRAE, Institut Agro, Univ Rennes, 35000, Rennes, France}
 \affil[6a]{GenOuest Core Facility, Univ Rennes, Inria, CNRS, IRISA, 35000, Rennes, France}
+\affil[7]{Wendi Bacon Goes to Open University.}
 \affil[8]{Euro-Bioimaging ERIC Bio-Hub, EMBL, Meyerhofstrasse 1, 69117 Heidelberg, Germany}
 \affil[9]{Department of Biochemistry and Molecular Biology, Eberly College of Science, The Pennsylvania State University, PA, United States}
 \affil[10]{Bioinformatics Group, Department of Computer Science, University of Freiburg, 79110 Freiburg im Breisgau, Germany}
@@ -61,7 +63,7 @@
 %%% Should only be set by an editor
 \jvolume{00}
 \jnumber{0}
-\jyear{2020}
+\jyear{2022}
 
 \begin{document}
 
@@ -82,6 +84,15 @@ Often this is achieved using a private server where there is no contention for t
 Galaxy; Training; Teaching; Remote Training
 \end{keywords}
 \end{frontmatter}
+
+%%% Key points will be printed at top of second page
+\begin{keypoints*}
+\begin{itemize}
+\item Infrastructure is complicated and difficult to setup for teachers.
+\item TIaaS provides "one click" infrastructure for trainers.
+\item It enables remote training via a dashboard where instructors can follow student progress.
+\end{itemize}
+\end{keypoints*}
 
 \section{Findings}
 \subsection{Background}
@@ -156,7 +167,6 @@ Slurm, in contrast, requires either using TPV's notion of machine tags to separa
 \begin{figure}[!ht]
 \centering
 \begin{lstlisting}[frame=single]  % Start your code-block
-# HTCondor
 Requirements=(GalaxyGroup == training-nld) || \
     (GalaxyGroup == training-aus)
 +Group="training-aus, training-nld"
@@ -185,7 +195,7 @@ Or, rewritten for the modern Total Perspective Vortex (TPV) scheduler that is in
 
 \begin{figure}[!ht]
 \centering
-\begin{lstlisting}[frame=single,language=ini]  % Start your code-block
+\begin{lstlisting}[frame=single,language=bash]  % Start your code-block
 roles:
   training.*:
     scheduling:
