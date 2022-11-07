@@ -27,7 +27,7 @@
 \author[2,2a]{Cameron~Hyde}
 \author[3]{John~Davis}
 \author[4]{Simon~Gladman}
-\author[5]{Nate~Coraor}
+\author[9]{Nate~Coraor}
 \author[6,6a]{Anthony~Bretaudeau}
 \author[10]{Gianmauro~Cuccuru}
 \author[8,10]{Beatriz Serrano-Solano}
@@ -42,7 +42,6 @@
 \affil[2a]{University of the Sunshine Coast, 4 Locked Bag, Maroochydore, QLD 4558 Australia}
 \affil[3]{Department of Biology, Johns Hopkins University, Baltimore, MD, United States}
 \affil[4]{Melbourne Bioinformatics, The University of Melbourne, Australia.}
-\affil[5]{Nate C Affil}
 \affil[6]{IGEPP, INRAE, Institut Agro, Univ Rennes, 35000, Rennes, France}
 \affil[6a]{GenOuest Core Facility, Univ Rennes, Inria, CNRS, IRISA, 35000, Rennes, France}
 \affil[8]{Euro-Bioimaging ERIC Bio-Hub, EMBL, Meyerhofstrasse 1, 69117 Heidelberg, Germany}
@@ -152,7 +151,7 @@ When a job is submitted by a user in a training group, the Galaxy instance's job
 
 In HTCondor this can be accomplished by preventing regular jobs from running on training nodes, and then allowing training jobs to run on training nodes, and preferring those nodes via configuration like in Figure \ref{code:condorprefer}.
 
-Slurm, in contrast, requires either using TPV's notion of machine tags to separate jobs into those specific, or selecting a partition with \texttt{--partition=training-nld}:
+Slurm, in contrast, requires either using TPV's notion of machine tags to separate jobs into those specific groups of machines, or simply manually selecting a reservation in which to run the training jobs, with \texttt{--partition=training-nld}.
 
 \begin{figure}[!ht]
 \centering
