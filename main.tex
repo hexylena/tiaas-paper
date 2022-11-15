@@ -23,29 +23,30 @@
 \title{Training Infrastructure as a Service}
 
 %%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
-\author[1,1a\authfn{1}]{Helena~Rasche}
-\author[2,2a]{Cameron~Hyde}
-\author[3]{John~Davis}
-\author[4]{Simon~Gladman}
-\author[9]{Nate~Coraor}
-\author[6,6a]{Anthony~Bretaudeau}
-\author[10]{Gianmauro~Cuccuru}
-\author[7]{Wendi~Bacon}
-\author[8,10]{Beatriz~Serrano-Solano}
-\author[9]{Jennifer~Hillman-Jackson}
-\author[1]{Saskia Hiltemann}
-\author[10\authfn{2}]{Bj\"orn~Gr\"uning}
-\author[1\authfn{2}]{Andrew~Stubbs}
+\author[1,1a\authfn{1}]{Helena~Rasche}   % 0000-0001-9760-8992
+\author[2,2a]{Cameron~Hyde}              % 0000-0002-5913-9766
+\author[3]{John~Davis}                   % 0000-0002-1363-1245
+\author[4]{Simon~Gladman}                % 0000-0002-6100-4385
+\author[9]{Nate~Coraor}                  % 0000-0001-8083-2963
+\author[6,6a]{Anthony~Bretaudeau}        % 0000-0003-0914-2470
+\author[10]{Gianmauro~Cuccuru}           % 0000-0002-5335-545X
+\author[7]{Wendi~Bacon}                  % 0000-0002-8170-8806
+\author[8,10]{Beatriz~Serrano-Solano}    % 0000-0002-5862-6132
+\author[9]{Jennifer~Hillman-Jackson}     % 0000-0003-4012-8116
+\author[1]{Saskia Hiltemann}             % 0000-0003-3803-468X
+\author[1a]{Miaomiao Zhou}               % 0000-0003-4426-1758
+\author[10\authfn{2}]{Bj\"orn~Gr\"uning} % 0000-0002-3079-6586
+\author[1\authfn{2}]{Andrew~Stubbs}      % 0000-0001-9817-9982
 
 \affil[1]{Department of Pathology and Clinical Bioinformatics, Erasmus Medical Center, Wytemaweg 80, 3015 CN, Rotterdam, The Netherlands}
-\affil[1a]{Academie voor de Technologie van Gezondheid en Milieu, Avans Hogeschool, Lovensdijkstraat 63, 4818 AJ Breda, the Netherlands}
+\affil[1a]{School of Life Sciences and Technology, Avans University of Applied Sciences, Lovensdijkstraat 63, 4818 AJ Breda, the Netherlands}
 \affil[2]{Queensland Cyber Infrastructure Foundation Ltd., The University of Queensland, St. Lucia, QLD 4072 Australia}
 \affil[2a]{University of the Sunshine Coast, 4 Locked Bag, Maroochydore, QLD 4558 Australia}
 \affil[3]{Department of Biology, Johns Hopkins University, Baltimore, MD, United States}
 \affil[4]{Melbourne Bioinformatics, The University of Melbourne, Australia.}
 \affil[6]{IGEPP, INRAE, Institut Agro, Univ Rennes, 35000, Rennes, France}
 \affil[6a]{GenOuest Core Facility, Univ Rennes, Inria, CNRS, IRISA, 35000, Rennes, France}
-\affil[7]{Wendi Bacon Goes to Open University.}
+\affil[7]{School of Life, Health & Chemical Sciences; The Open University, Milton Keynes, UK}
 \affil[8]{Euro-Bioimaging ERIC Bio-Hub, EMBL, Meyerhofstrasse 1, 69117 Heidelberg, Germany}
 \affil[9]{Department of Biochemistry and Molecular Biology, Eberly College of Science, The Pennsylvania State University, PA, United States}
 \affil[10]{Bioinformatics Group, Department of Computer Science, University of Freiburg, 79110 Freiburg im Breisgau, Germany}
@@ -82,7 +83,7 @@ Often this is achieved using a private server where there is no contention for t
 
 \begin{keywords}
 Galaxy; Training; Teaching; Remote Training
-\end{keywords}
+\end{keywords}%
 \end{frontmatter}
 
 %%% Key points will be printed at top of second page
@@ -102,7 +103,7 @@ Galaxy; Training; Teaching; Remote Training
 With the large volume of bioinformatics data becoming available, the availability of training for bioinformaticians and data scientists is not keeping up, resulting in a training gap \cite{Attwood2017}.
 The Galaxy platform \cite{afgan2018galaxy} provides infrastructure on which to not only perform data analysis, but also conduct trainings, as it provides a user-friendly web-based interface to command-line analysis tools. Teaching with Galaxy significantly decreases infrastructure preparation time for instructors. With a wide range of tools (8,000+) across a wide range of scientific domains, and pre-existing popularity within the life sciences community, Galaxy is an ideal platform for training \cite{gtn,gtn2}.
 
-In an attempt to address the training gap, the Galaxy community has, over the past several years, developed a wide array of hands-on tutorials (275+), covering bioinformatics and beyond, and made these materials FAIR \cite{Wilkinson2016-zo,10.1371/journal.pcbi.1007854}, and publicly available on the Galaxy Training Network (GTN) repository \cite{training-site}. In order to run these tutorials at scale, one often needs access to significant resources. For example, the GTN's most popular tutorial, ``Reference-based RNA-Seq data analysis'', uses the STAR aligner\cite{Dobin2012}. While such an ultra-fast aligner is ideal during training, as it reflects real-world analysis, it also consumes $\approx$32 GB of RAM at minimum\footnote{It uses 90 GB in the default configuration on UseGalaxy.eu. Many tools have similar requirements; on UseGalaxy.eu, 83 tools require $>$64 GB RAM, 151 require $>$32 GB, a limiting factor especially for smaller training infrastructures. Even with a large cluster, large class sizes can still consume all of the available overhead.}. Individual STAR jobs might execute successfully and quickly, however the infrastructure remains a limiting factor for events with large number of participants that wish to stick to a schedule. When jobs must queue due to throughput limitations, this significantly impacts a training's timeline to the detriment of learners. While the instructor could alternatively deploy their own private infrastructure, this requires significant additional knowledge, time, energy, and funds. All of which are significant barriers for bioinformatics instructors trying to share their knowledge.
+In an attempt to address the training gap, the Galaxy community has, over the past several years, developed a wide array of hands-on tutorials (275+), covering bioinformatics and beyond, and made these materials FAIR \cite{Wilkinson2016-zo,10.1371/journal.pcbi.1007854}, and publicly available on the Galaxy Training Network (GTN) repository \cite{training-site}. In order to run these tutorials at scale, one often needs access to significant resources. For example, the GTN's most popular tutorial, ``Reference-based RNA-Seq data analysis'', uses the STAR aligner\cite{Dobin2012}. While such an ultra-fast aligner is ideal during training, as it reflects real-world analysis, it also consumes $\approx$32 GB of RAM at minimum\footnote{It uses 90 GB of RAM in the default configuration on UseGalaxy.eu. Many tools have similar requirements; on UseGalaxy.eu, 83 tools require $>$64 GB RAM, 151 require $>$32 GB, a limiting factor especially for smaller training infrastructures. Even with a large computer cluster, even moderate class sizes of 20-40 can still consume all of the available overhead.}. Individual STAR jobs might execute successfully and quickly, however the infrastructure remains a limiting factor for events with large number of participants that wish to stick to a schedule. When jobs must queue due to throughput limitations, this negatively impacts a training's timeline to the detriment of learners. While the instructor could alternatively deploy their own private infrastructure, this requires additional knowledge, time, energy, and funds. All of which are significant barriers for bioinformatics instructors trying to share their knowledge.
 
 The training events hosted as part of the Gallantries project \cite{gallantries} were the first foray into hybrid training for UseGalaxy.eu instructors. In hybrid training, one main instructor teaches in front of a camera, and this feed is live-streamed to multiple satellite classrooms, in geographically distinct locations. Each satellite location has on-site helpers present to support students and provide communication back to the main instructor. During one of the initial Gallantries hybrid training events--wherein we had three classrooms spread across the Netherlands, Germany, and Greece--we discovered that staying updated on student progress was a significant pain point. Normally teachers of hands-on lessons tend to wander around the classroom to check that students are not encountering difficulties, or use the Carpentries-style \cite{thecarpentries,Wilson2016} method of red and green sticky notes to let students communicate whether things are going well or poorly. In hybrid events this progress tracking is more difficult as on-site staff need to survey the room and report back centrally to the teacher, and is near impossible in fully remote training events such as have been more prevalent during the last 3 years of the pandemic \cite{Serrano_Solano_2021}.
 
@@ -110,12 +111,12 @@ The training events hosted as part of the Gallantries project \cite{gallantries}
 
 We initially developed Training Infrastructure as a Service (TIaaS) to solve our primary problems of ensuring we could quickly setup dedicated training resources which would be private to a single course. By re-using an existing public server backed by significant compute resources, we completely remove the infrastructure setup and maintenance costs of hosting an event for instructors. This centralisation also reduces the infrastructure requirements, as training events are rarely concurrent and can share the same hardware when not running simultaneously. 
 
-The TIaaS system can be deployed on any Galaxy server, and is flexible, allowing Galaxy administrators to customize the settings to fit their needs and compute infrastructure. TIaaS is currently deployed on all 3 major Galaxy servers (Galaxy EU, Galaxy Australia, and Galaxy US), and numerous other smaller servers in public and private deployments. While individual TIaaS deployments can handle job scheduling differently, they generally allocate private resources so jobs can always run without delay. TIaaS provides good separation of responsibilities between instructors who are teaching and the server administrators responsible for Galaxy, rather than requiring instructors to be cross-trained in server administration. The live dashboard (Figure \ref{figure:dashboard}) showing participant jobs provides visibility into student progress and enables instructors to flag potential issues that may benefit from additional discussion with learners. We have shared this service with the Galaxy training community to overwhelmingly positive feedback, anecdotally \cite{tiaas_feedback}.
+The TIaaS system can be deployed on any Galaxy server, and is flexible, allowing Galaxy administrators to customize the settings to fit their needs and compute infrastructure. TIaaS is currently deployed on all 3 major Galaxy servers (Galaxy EU, Galaxy Australia, and Galaxy US), and numerous other smaller servers in public and private deployments. While individual TIaaS deployments can handle job scheduling differently, they generally allocate private resources so jobs can run without delay. TIaaS provides good separation of responsibilities between instructors who are teaching and the server administrators responsible for Galaxy, rather than requiring instructors to be cross-trained in server administration. The live dashboard (Figure \ref{figure:dashboard}) showing participant jobs provides visibility into student progress and enables instructors to flag potential issues that may benefit from additional discussion with learners. We have shared this service with the Galaxy training community to overwhelmingly positive feedback, anecdotally \cite{tiaas_feedback}.
 
 \begin{figure}[bt!]
 \centering
 \includegraphics[width=\linewidth]{images/dashboard.png}
-\caption{The top portion of the training dashboard page shows the status of the jobs in the past hours. A greyscale heatmap of the tools which were run indicates if everything is running smoothly or if there is anything the instructors should look into. As learners follow along and run different tools, these show up immediately, allowing instructors to identify if everyone has started or finished a specific step. The bottom portion shows the rest of the training dashboard, which lists jobs and workflows that were run, chronologically, colour-coded first by user, and second by the job status. Randomised colours and identifiers are used to protect user privacy.}\label{figure:dashboard}
+\caption{The top portion of the training dashboard page shows the status of the jobs in the past hours. A greyscale heatmap of the tools which were run indicates if everything is running smoothly or if there is anything the instructors should look into. As learners follow along and run different tools, these show up immediately in the dashboard, allowing instructors to identify if everyone has started or finished a specific step. The bottom portion shows the rest of the training dashboard, which lists jobs and workflows that were run, chronologically, colour-coded first by user, and second by the job status. Randomised colours and identifiers are used to protect user privacy.}\label{figure:dashboard}
 \end{figure}
 
 To create TIaaS, we implemented a web service, and separate job scheduling rules, which function together to present a private queue for users in specific Galaxy user groups. Event organizers register their course using a form in the TIaaS web service, where they are asked to provide information about the training  materials they will use, and the expected number of participants. TIaaS coordinators  review these requests, using information about the class size, the tools used in the training materials, as well as the resource allocations of those tools on the infrastructure, to estimate the required compute resources.
@@ -132,7 +133,7 @@ The course dashboard, visualising the progress of participants (Figure \ref{figu
 
 \subsubsection{Usage}
 Since the introduction of TIaaS in July 2018, it has seen nearly constant use with $>$360 trainings occurring on the platform, all across the world (Figure \ref{figure:graphs}).
-Everything from one-day workshops for bioinformaticians to multi-month courses for high school students have been hosted by TIaaS and UseGalaxy.eu, covering topics as wide-ranging as SARS-CoV-2 analysis, Imaging, Proteomics, and Machine Learning. All of this infrastructure has been provided for free across the big three Galaxies (EU, Americas, Australia), thanks to the various grants supporting their associated Galaxy deployments.
+Everything from one-day workshops for bioinformaticians to multi-month courses for high school and university students have been hosted by TIaaS and UseGalaxy.eu, covering topics as wide-ranging as SARS-CoV-2 analysis, Imaging, Proteomics, and Machine Learning. All of this infrastructure has been provided for free across the big three Galaxies (EU, Americas, Australia), thanks to the various grants supporting their associated Galaxy deployments.
 
 \begin{figure}[bt!]
 \centering
@@ -141,16 +142,18 @@ Everything from one-day workshops for bioinformaticians to multi-month courses f
 	\caption{Since its introduction it has grown into a well-used service over the past four years. There have been $>360$ training events, spread across two primary instances that are very involved in training. Event length distribution in days is extremely heavily skewed to very short events, with a long tail of semester-long courses using the platform.}\label{figure:graphs}
 \end{figure}
 
-Class sizes have ranged considerably, from the median of 25 participants (std. dev 164) to a maximum of 2000 registrants for a fully asynchronous (self-paced) course. Most courses were short training events with a median of two days, however some ran for multiple months like a number of high school courses which used TIaaS over the entire semester. The variability in administrator deployments of TIaaS can allow it to accommodate a wide range of teaching scenarios; for some courses large resources may be allocated like the Galaxy Community Conferences where the big three Galaxies configured TIaaS with considerable resources to permit local and remote synchronous training, all the way to semester-long courses which may not necessitate a large allocation.
+Class sizes have ranged considerably, from the median of 25 participants (std. dev 164) to a maximum of 2000 registrants for a fully asynchronous (self-paced) course. Most courses were short training events with a median of two days, however some ran for multiple months like a number of high school or univeristy courses which used TIaaS over the entire semester. The variability in administrator deployments of TIaaS can allow it to accommodate a wide range of teaching scenarios; for some courses large resources may be allocated like the Galaxy Community Conferences where the big three Galaxies configured TIaaS with considerable resources to permit local and remote synchronous training, all the way to semester-long courses which may not necessitate a large allocation.
 
-TIaaS has been successfully scaled to extremely large and highly geographically distributed events. The GT\~{N} project successfully used it for a Spanish language course spanning the Americas and Europe, while the two Sm\"{o}rg\r{a}sbord events used TIaaS for a week long, global, asynchronous course with trainees across 111 countries.
+TIaaS has been successfully scaled to extremely large and highly geographically distributed events. The GT\~{N} project successfully used it for a Spanish language bioinformatics course spanning the Americas and Europe, while the two Sm\"{o}rg\r{a}sbord events used TIaaS for a week long, global, asynchronous course with trainees across 111 countries.
+
+In a hackathon environment, TIaaS has allowed large dataset (single cell RNA-seq) manipulation within group projects in remote courses with up to 30 participants performing unique analyses\cite{Bacon_2022}. It has successfully supported an introduction to bioinformatics course at a remote-learning, entrance-exam-free alternative education institution (The Open University) as well as industry courses, allowing them to test out Galaxy as a collaborative working environment before making decisions on consortium platform use.
 
 \section{Methods}
 
 \subsection{Implementation}
 TIaaS was written in Python with the Django framework. It has been designed from the start to have a very limited scope: provide a form to register events, an approval flow for administrators, management of user groups and roles in the Galaxy database, and the status dashboard. Service metrics are exposed via a Prometheus endpoint \texttt{/metrics}.
 
-For instructors a form is provided (\texttt{/tiaas/new}) which permits them to register a new training event. When submitted, this is stored in the associated database. Administrators can view the requested training events and approve or reject them using the built in Django admin interface. When users visit their their training URL (\texttt{/join-training/<id>}) the system accesses their Galaxy session cookie, which is present as TIaaS is deployed at a path below Galaxy, and decodes it. They are automatically registered as part of a Galaxy group named after the training (e.g. \texttt{training-<id>}) which is created on demand.
+For instructors a form is provided (\texttt{/tiaas/new}) which permits them to register a new training event. When submitted, this is stored in the associated database. Administrators can view the requested training events and approve or reject them using the built in Django admin interface. When users visit their  training URL (\texttt{/join-training/<id>}) the system accesses their Galaxy session cookie, which is present as TIaaS is deployed at a path below Galaxy, and decodes it. They are automatically registered as part of a Galaxy group named after the training (e.g. \texttt{training-<id>}) which is created on demand.
 
 When visiting the dashboard (Figure \ref{figure:dashboard}), the training ID is extracted from the URL (e.g. ``test'' from \url{https://usegalaxy.eu/join-training/test/status}), and all non-terminal jobs, in the past 1-6 hours, from those users are presented in a pseudonymised manner.
 
@@ -206,7 +209,7 @@ roles:
 \end{figure}
 
 \subsection{Deploying}
-As the Galaxy community has largely settled on Ansible for deployment of Galaxy, and related components, an Ansible role was produced for deploying the TIaaS Service. A few known deployments make their configuration public, and we can see the differences: one of the motivating factors in TIaaS' design was such flexibility. \emph{Galaxy Europe} uses it with HTCondor, and job rules that allow spill over to the main cluster, new machines are brought up in an OpenStack cluster specifically for training events and destroyed afterwards. Each Machine is tagged with an HTCondor attribute indicating which training it belongs to, and the job rules\footnote{Visible in \url{https://github.com/usegalaxy-eu/infrastructure-playbook/pull/447/files}} use that to enable access to those machines, and a preference for them. \emph{Galaxy Australia} has a separate ``training cluster'' in their OpenStack deployment, and route all training jobs to the single shared cluster\footnote{Visible at \url{https://github.com/cat-bro/infrastructure/blob/81ce910b74aafb333085e5fbc42fe5b37c3b4cab/files/galaxy/dynamic_job_rules/pawsey/total_perspective_vortex/roles.yml}}. \emph{Galaxy Main} takes a different approach, lacking additional clusters but having an excellent queuing system, they artificially limit the runtime, memory, and CPU resources allocated to users running jobs within a TIaaS group. \emph{Avans Hogeschool} uses TIaaS in an internal Galaxy where they provide no preferential treatment, and just use the dashboard to follow students' progress.
+As the Galaxy community has largely settled on Ansible for deployment of Galaxy, and related components, an Ansible role was produced for deploying the TIaaS Service. A few known deployments make their configuration public, and we can see the differences: one of the motivating factors in TIaaS' design was such flexibility. \emph{Galaxy Europe} uses it with HTCondor, and job rules that allow spill over to the main cluster, new machines are brought up in an OpenStack cluster specifically for training events and destroyed afterwards. Each Machine is tagged with an HTCondor attribute indicating which training it belongs to, and the job rules\footnote{Visible in \url{https://github.com/usegalaxy-eu/infrastructure-playbook/pull/447/files}} use that to enable access to those machines, and a preference for them. \emph{Galaxy Australia} has a separate ``training cluster'' in their OpenStack deployment, and route all training jobs to the single shared cluster\footnote{Visible at \url{https://github.com/cat-bro/infrastructure/blob/81ce910b74aafb333085e5fbc42fe5b37c3b4cab/files/galaxy/dynamic_job_rules/pawsey/total_perspective_vortex/roles.yml}}. \emph{Galaxy Main} takes a different approach, lacking additional clusters but having an efficient queuing system that can properly pack jobs based on walltimes; they instead artificially limit the runtime, memory, and CPU resources allocated to users running jobs within a TIaaS group. \emph{Avans Hogeschool} uses TIaaS in an internal Galaxy where they provide no preferential treatment, and just use the dashboard to follow students' progress.
 
 \section{Availability of source code and requirements}
 
@@ -240,7 +243,7 @@ Not applicable
 The authors declare that they have no competing interests.
 
 \subsection{Funding}
-The work is in part funded by Collaborative Research Centre 992 Medical Epigenetics (DFG grant SFB 992/1 2012) and German Federal Ministry of Education and Research (BMBF grants 031 A538A/A538C RBC and 031L0101B/031L0101C de.NBI-epi, doi:10.13039/501100002347).
+The work is in part funded by Collaborative Research Centre 992 Medical Epigenetics (DFG grant SFB 992/1 2012), German Federal Ministry of Education and Research (BMBF grants 031 A538A/A538C RBC and 031L0101B/031L0101C de.NBI-epi, doi:10.13039/501100002347), and the National Institutes of Health, U.S. (National Human Genome Research Institute; grant 2U24HG006620, doi:10.13039/100000051).
 
 Development work and article publication charges, are additionally funded with the support of the Erasmus+ programme of the European Union (Grant 2020-1-NL01-KA203-064717, doi:10.13039/100001501).
 
@@ -257,7 +260,7 @@ Author contributions, described using the CASRAI CRedIT typology (http://casrai.
     \item Resources: BG, SG, NC, AB, AS, BSS, JHJ;
     %\item Data Curation: ;
     \item Writing – Original Draft Preparation: HR, BG;
-    \item Writing – Review & Editing: HR, SH;
+    \item Writing – Review & Editing: HR, SH, JD, MZ;
     \item Visualization: HR, CH;
     \item Supervision: AB, BG;
     %\item Project Administration: ;
