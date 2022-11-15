@@ -21,6 +21,6 @@ ggplot(numbers, aes(end-start, fill=site)) +
   geom_histogram(position="stack") +
   xlab("Event Length (Days)") + ylab("Number of Events") + 
   ggtitle("Event Lengths") +
-  scale_fill_manual(values=c("#D162A4", "#B55690", "#A30262"))
+  scale_fill_manual(values=c("#ED71BB", "#B55690", "#A30262"))
 ggsave("event-lengths.png", width=5, height=2)
 system(paste("optipng ", getwd(), "event-lengths.png"))
