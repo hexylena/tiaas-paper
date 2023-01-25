@@ -1,4 +1,6 @@
-paper: images/rules.png
+IMAGES := $(wildcard images/*.png)
+
+paper: $(IMAGES)
 	latexmk -xelatex main.tex
 
 view:
