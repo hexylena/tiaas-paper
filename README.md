@@ -14,8 +14,8 @@ The data is frozen ahead of publication due to the integration of Smörgåsbord 
 - The rows relating to Smörgåsbord were manually edited to include all relevant countries
 
 
+![](images/event-starts.png)
+
 ![](images/event-lengths.png)
 
 ![](images/map.png)
-
-![](images/event-starts.png)
